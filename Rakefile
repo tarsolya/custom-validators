@@ -11,12 +11,13 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "custom_validators"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{An ever growing collection for custom validators for ActiveModel 3.0}
+    gem.description = %Q{An ever growing collection for custom validators for ActiveModel 3.0}
     gem.email = "tarsolya@gmail.com"
     gem.homepage = "http://github.com/tarsolya/custom_validators"
     gem.authors = ["Tarsoly András"]
-    gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.add_development_dependency "rspec", "~> 2.0.0"
+    gem.add_development_dependency "activemodel", "~> 3.0.0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
