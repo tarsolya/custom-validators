@@ -1,15 +1,72 @@
-= custom_validators
+= Custom Validators
 
-Description goes here.
+An ever growing collection of custom validators for ActiveModel 3.0.
 
-== Note on Patches/Pull Requests
+== Preface
+
+Rails 3.0 have a nice new way to validate instance attributes against built-in and
+custom validators. For example, you could say:
+
+  class Foo << ActiveRecord::Base
+    validates :name, :presence => true, :uniqueness => true, :format => /(.*)/
+  end
+  
+This equals the following:
+
+  class Foo << ActiveRecord::Base
+    validates_presence_of :name
+    validates_uniqueness_of :name
+    validates_format_of :name, :with => /(.*)/
+  end
+  
+You can do this now without using ActiveRecord either, using only ActiveModel's validators
+to validata your model's attributes:
+
+  class Foo
+    include ActiveModel::Validators
+    
+    attr_accessor :name
+    validates :name, :presence => true, :uniqueness => true
+  end
+  
+For more information on validators in Rails 3.0, please visit this excellent post by Jamie Hill:
+http://thelucid.com/2010/01/08/sexy-validation-in-edge-rails-rails-3/
+
+
+== Install
+
+Install as a gem:
+  
+  # gem install custom_validators
+  
+Or as a plugin
+
+  # rails plugin install http://github.com/tarsolya/custom-validators.git
+  
+  
+== Usage
+
+Supported validators:
+
+* email - Simple validator for e-mail address format, not RFC compliant, though.
+  
+  # validates :contact, :email => true
+    
+* real_id - Validates attribute against the new Real ID format used on Blizzard's Battle.net 2.0
+  
+  # validates :bnet_id, :real_id = true
+
+== Requirements
+
+  * ActiveModel 3.0
+
+== How to contribute
  
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Fork.
+* Include your custom validator and name it properly.
+* Please do add specs for it. It should be pretty simple,
+  just check out the already included ones.
+* Commit your changes, but leave Rakefile, VERSION or HISTORY alone.
 * Send me a pull request. Bonus points for topic branches.
 
 == Copyright
